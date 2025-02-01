@@ -18,6 +18,11 @@
   (when (eq camera (camera scene))
     (setf (camera scene) NIL)))
 
+;; Don't keep track of cameras as listeners because there's custom logic for them
+;; Otherwise we get duplicate events
+(defmethod add-listener ((camera camera) (scene scene)))
+(defmethod remove-listener ((camera camera) (scene scene)))
+
 (defmethod (setf camera) :around ((camera camera) (scene scene))
   (let ((old (camera scene)))
     (when old (v<- (bsize camera) (bsize old))))
