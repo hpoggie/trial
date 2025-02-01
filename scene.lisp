@@ -20,8 +20,8 @@
 
 ;; Don't keep track of cameras as listeners because there's custom logic for them
 ;; Otherwise we get duplicate events
-(defmethod add-listener ((camera camera) (scene scene)))
-(defmethod remove-listener ((camera camera) (scene scene)))
+(defmethod add-listener ((camera camera) (loop event-loop)))
+(defmethod remove-listener ((camera camera) (loop event-loop)))
 
 (defmethod (setf camera) :around ((camera camera) (scene scene))
   (let ((old (camera scene)))
